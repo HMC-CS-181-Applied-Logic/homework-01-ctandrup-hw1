@@ -1,0 +1,383 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{graphicx} 
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{color}
+
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or solution or whatever
+
+\setlength\parindent{0pt}
+
+
+
+\title{CS 181U Applied Logic HW 1 \\ Due Wednesday Feb 5, 2020}
+\date{}
+\author{\todo{Your Name Goes Here}}
+\begin{document}
+\maketitle
+
+ 
+\begin{problem}{1} In class, we discussed some challenges that come from discrepancies between the way formal logic works and the way we use logical connectives in everyday natural language. This problem will explore that a little bit more.  
+
+\begin{enumerate}[label=\Alph*.]
+
+\item \textbf{Unless.} We use the word `unless' all the time. For instance, I might say ``I'm going on vacation \textit{unless} I get a cold.''
+
+
+\begin{enumerate}[label=\roman*.]
+
+\item Let the symbol $\mathrm{U}$ represent the `unless' operator; we write $A \mathrm{U} B$ to express the sentence `$A$ unless $B$'. Fill in this truth table for the unless connective for what you think the word `unless' means in natural language. (I.e. replace the question marks with $T$ or $F$.) There isn't really a right or wrong answer. I'm truly just asking you what you think, but you should be able to back up your reasoning if I were to ask. \\
+
+\begin{center}
+\begin{tabular}{|c|c||c|}
+\hline
+$A$ & $B$ & $A \ \mathrm{U} \ B$ \\ \hline \hline
+$F$ & $F$ & \todo{?} \\ \hline
+$F$ & $T$ & \todo{?} \\ \hline
+$T$ & $F$ & \todo{?} \\ \hline
+$T$ & $T$ & \todo{?} \\ \hline
+\end{tabular} \\ 
+\end{center} 
+
+~ \\
+
+\item Express the semantics that you ascribed to `unless' using only the logical connectives from among $\land, \lor, \rightarrow, $ and $\neg$. \\
+
+\textbf{Answer.} 
+
+$A \mathrm{U} B \equiv \todo{\textbf{some expression using $\land, \lor, \rightarrow,\neg$}}$
+
+\newpage 
+
+\item If, in addition to the logical connectives from part (ii), you can also use connectives from among $\bar\land$ (NAND), $\bar\lor$ (NOR), and $\oplus$ (XOR), what is the smallest formula that you can write that is equivalent to $A \ \mathrm{U} \ B$ \ ? \\
+
+\textbf{Answer.} 
+
+$A \mathrm{U} B \equiv \todo{\textbf{some expression using $\land, \lor, \rightarrow,\neg,\bar\land,\bar\lor,\oplus$}}$
+
+
+\item Imagine that the \textit{unless} operator, $\mathrm{U}$, became a standard operator in formal propositional logic. In your opinion, do you think that the word `unless' as understood and used in natural language and a formal semantics of the unless operator $\mathrm{U}$ would have any important differences? Why or why not? \\
+
+\textbf{Answer.} 
+
+\todo{Your answer goes here.}
+
+\end{enumerate}
+
+
+\newpage
+\item \textbf{More on Biscuit Conditionals.} In class we talked about so-called `Biscuit conditionals'. We observed that when somebody says ``If you are hungry, there are biscuits on the table,'' it doesn't really have the same meaning when we try to interpret the sentence using the semantics of the propositional logic operator $\rightarrow$.
+
+For this question, your goal is to explain to another person (a friend, student in another course, a sibling, anybody) the discrepancy that arises in trying to interpret conditional natural language sentences using formal logic. But, importantly, try not to be a jerk about it.
+
+\begin{center}
+\includegraphics[scale=0.7]{conditionals.png}
+\end{center}
+
+Write one to two paragraphs describing your experience with explaining the idea of biscuit conditionals to another person.
+
+\textbf{Answer.} 
+
+\todo{Your answer goes here.}
+
+\end{enumerate}
+
+\end{problem}
+
+
+% \newpage 
+% \begin{problem}{2} WFF Structural Induction
+
+% \end{problem}
+
+
+\newpage
+
+\begin{problem}{2} \textbf{A Python-based Logic Language} \\
+
+In this problem you will implement several fundamental operations for propositional logic. \\
+
+\textbf{Provided Starter Code} \\
+
+The file \texttt{propositional\_logic.py}, which you hopefully recall from last week, contains several class definitions for defining expressions in propositional logic. For instance, to encode the formula 
+$A \rightarrow (B \land \neg C)$, 
+we would write \\
+
+\texttt{Implies(BoolVar(`A'), And(BoolVar(`B'), Not(BoolVar(`C'))))} \\
+
+where \texttt{Implies}, \texttt{And}, \texttt{Not}, and \texttt{BoolVar} are all object constructors. \\
+
+\textbf{Operations on Logical Formulas} \\
+
+Given an object, say \texttt{F}, for a logical formula, we want to perform some useful operations on it. For instance, we may want to get the set of all variables in \texttt{F} or evaluate it under some interpretation, \texttt{I}, of those variables. To perform these operations, we will make method calls, like \texttt{F.getVars()} or \texttt{F.eval(I)}. \\
+
+
+
+For this problem, we will focus on these important operations: \\
+
+\begin{itemize}
+\item \texttt{isAtom} checks if \texttt{F} is an atom.
+\item \texttt{isLiteral} checks if \texttt{F} is a literal.
+\item \texttt{getVars} returns a list of all variables in \texttt{F}.
+\item \texttt{isNNF} checks if \texttt{F} is in negation normal form.
+\item \texttt{eval} evaluates \texttt{F} under an interpretation.
+\item \texttt{NNF} returns the negation normal form of \texttt{F}.
+\item \texttt{removeImplications} returns a formula equivalent to \texttt{F} without conditionals.
+\item \texttt{simplify} returns a simplified version of \texttt{F}.
+\end{itemize}
+
+\newpage
+
+\textbf{Provided Testing Code} \\
+
+Along with the starter code, you also have 
+\texttt{test\_propositional\_logic.py}. On the command line, inside the starter code directory, using the CS181u Docker, you can run the command \texttt{pytest} to run all of the tests in the testing file. The \texttt{pytest} command just looks in the current directory for files that start with \texttt{test\_} and runs all tests in those files that begin with \texttt{test\_}. \\
+
+Initially, most of the tests will just fail since many things are not yet implemented. What will probably be more useful to you is to run a specific test function while you are developing a particular function. To do so you can, for example, run \\
+
+\texttt{pytest -k test\_isNNF} \\
+
+to run just the \texttt{test\_isNNF()} function. \\
+
+
+\textbf{Provided Usage Code} \\
+
+Along with the starter code and testing code, you have a file \texttt{using\_propositional\_logic.py}. This file shows some very basic usage of functions from \texttt{propositional\_logic.py}. You may find it useful to edit this file and try things out while you are developing. This file will not be graded. 
+
+
+\newpage 
+
+\begin{enumerate}[label=\Alph*.]
+
+\item \textbf{Implement} \texttt{isLiteral}. \\
+
+Use the following definitions to implement the \texttt{isLiteral} function. 
+
+\begin{itemize}
+	\item An \textit{atom} is either a constant or a variable. 
+
+	\item A \textit{literal} is either an atom or the negation of an atom. 
+\end{itemize}
+
+For a propositional formula object \texttt{F}, calling \texttt{F.isLiteral()} should return \texttt{True} if and only if \texttt{F} is a literal, and \texttt{False} otherwise. \\
+
+Here are several examples in python syntax: \\
+
+\texttt{BoolConst(True).isLiteral() == True} \\
+\texttt{BoolConst(False).isLiteral() == True} \\
+\texttt{BoolVar('A').isLiteral() == True} \\
+\texttt{Not(BoolVar('A')).isLiteral() == True} \\
+\texttt{Not(BoolConst(True)).isLiteral() == True} \\
+\texttt{And(BoolVar('A'), BoolVar('B')).isLiteral() == False} \\ \\
+
+The equivalent expressions in the syntax of propositional logic that are literals: \\
+
+
+$T$, $F$, $A$, $\neg A$, $\neg T$ \\
+
+This is not a literal: \\
+
+$(A \land B)$ \\
+
+
+\item \textbf{Implement} \texttt{getVars}. \\
+
+
+For any formula \texttt{F}, \texttt{F.getVars()} should return a list of all unique BoolVars in the expression. there should not be duplicates. \\
+
+Example: \texttt{f1 = Iff(And(A,Or(B,T)), C)} \\ \\
+
+\texttt{f1.getVars()} should return \texttt{[BoolVar(A), BoolVar(B), BoolVar(C)]} \\ \\
+
+Example: \texttt{f2 = And(T,Iff(F,T))} \\ 
+\texttt{f2.getVars()} should return \texttt{[] \# empty list}
+
+\item \textbf{Implement} \texttt{isNNF}. \\
+
+An expression is in NNF if all negations (if there are any) are ``at the lowest'' level and does not contain and conditionals. That is, negations only occur on atoms. For example, all of these formulas are in negation normal form:
+
+$T$, 
+$F$, 
+$A$, 
+$\neg T$, 
+$\neg A$, 
+$(A \land B)$, 
+$(A \Leftrightarrow T)$, 
+$(\neg C \lor A)$, 
+$((((B \lor \neg F) \lor (P \lor \neg T)) \lor \neg A) \land (\neg T \lor \neg F))$ \\
+
+These formulas are not in negation normal form: \\
+
+$\neg \neg A$, 
+$(\neg \neg T \land \neg A)$,
+$\neg (A \land B)$ \\ 
+
+
+\textbf{NOTE:} This is one place where you might want to use \texttt{isinstance(self.exp, Not)} to check for two layers of negations. If you really love OOP and want to try to attempt a solution based on `double dispatch', be my guest!
+
+
+
+\item \textbf{Implement} \texttt{removeImplications}. \\
+
+
+
+We can use these equivalences to remove implications from a formula so that  it only has $\land, \lor, \neg$, and atomic expressions: \\ \\
+
+$A \rightarrow B \equiv \neg A \lor B$ \\
+
+$A \leftrightarrow B \equiv (A \rightarrow B) \land (B \rightarrow A)$ \\ 
+
+Examples: \\ 
+
+\texttt{f1 = Not(Implies(A,Or(C,B)))} 
+
+\texttt{f1.removeImplications()} returns 
+
+\texttt{Not(Or(Not(BoolVar(A)), Or(BoolVar(C), BoolVar(B))))} \\ 
+
+\texttt{f2 = Iff(Not(BoolVar(A)), Or(BoolVar(C), BoolVar(B)))} 
+
+\texttt{f2.removeImplications()}  returns
+
+\texttt{Or(And(Not(BoolVar(A)), Or(BoolVar(C), BoolVar(B))), And(Not(Not(BoolVar(A))), Not(Or(BoolVar(C), BoolVar(B)))))} 
+
+
+\newpage
+
+
+\item \textbf{Implement} \texttt{NNF}. \\
+
+An expression can be converted to NNF by first removing all implications and then recursively applying equivalences: \\
+
+$\neg \neg A \equiv A$
+
+$\neg (A \land B) \equiv (\neg A \lor \neg B)$
+
+$\neg (A \lor B) \equiv (\neg A \land \neg B)$ \\
+
+
+Each equivalence provides a way to either eliminate a negation at the outer level, or to move it down from one level into a lower level sub-formula. \\ \\
+
+\textbf{NOTE:} This is the other place where you might want to use \texttt{isinstance(self.exp, Not)} to check for two layers of negations. If you really love OOP and want to try to attempt a solution based on `double dispatch', be my guest!
+
+\item \textbf{Implement} \texttt{eval}. \\
+
+
+
+In our python implementation of Boolean logic, an interpretation is a dictionary from variables to values. \\ \\
+
+Example:  \\
+
+\texttt{interp = {BoolVar('A') : BoolConst(True), BoolVar('B'): BoolConst(False)}} \\ \\
+
+\texttt{f.eval(interp)} should evaluate \texttt{f} under the interpretation. \\ \\
+
+Example: \\
+
+\texttt{And(BoolConst(False), BoolVar('A')).eval(interp)} 
+
+should return \texttt{BoolConst(False)}
+
+
+\newpage
+
+\item \textbf{Implement} \texttt{simplify}. \\
+
+Often, it is useful to simplify a formula based on the semantics that we know. For example, we might want to simplify $A \lor A$ into just $A$. In this part, I am asking you to implement all of the following simplification rules.
+
+
+\begin{minipage}[t]{0.33\textwidth}
+\vspace{0pt}
+\textbf{Negations} \\
+
+$\neg T \equiv F$
+
+$\neg F \equiv T$
+
+$\neg \neg X \equiv X$ \\ \\ \\ \\
+
+\textbf{Biconditionals} \\
+
+$T \leftrightarrow X \equiv  X $
+
+$X \leftrightarrow T \equiv  X $
+
+$F \leftrightarrow X \equiv \neg X $
+
+$X \leftrightarrow F \equiv \neg X $
+
+$X \leftrightarrow X \equiv T $
+ 
+
+
+
+
+\end{minipage}
+\begin{minipage}[t]{0.33\textwidth}
+\vspace{0pt}
+
+\textbf{Disjunctions} \\
+
+
+$T \lor X \equiv T$
+
+$X \lor T \equiv T$
+
+$F \lor X \equiv X$
+
+$X \lor F \equiv X$
+
+$X \lor X \equiv X$ \\ \\
+
+
+\textbf{Implications} \\
+
+$T \rightarrow X \equiv  X$
+
+$F \rightarrow X \equiv  T$
+
+$X \rightarrow X \equiv  T$
+
+$X \rightarrow T \equiv  X$
+
+$X \rightarrow F \equiv \neg X $
+
+
+
+\end{minipage}
+\begin{minipage}[t]{0.33\textwidth}
+\vspace{0pt}
+
+\textbf{Conjunctions} \\
+
+$T \land X \equiv X$
+
+$X \land T \equiv X$
+
+$F \land X \equiv F$
+
+$X \land F \equiv F$
+
+$X \land X \equiv X$
+
+\end{minipage} \\ \\ \\
+
+\textbf{Examples and testing simplify.}
+In this part of the assignment I am asking you to come up with your own examples and tests. You should fill in at least 5 tests for the \texttt{test\_simplify()} function in the \texttt{test\_propositional\_logic.py} file. \\ \\
+
+
+\textbf{NOTE:} This is the last place where you might want to use \texttt{isinstance(self.exp, Not)} to check for two layers of negations. If you really love OOP and want to try to attempt a solution based on `double dispatch', be my guest!
+
+
+\end{enumerate}
+
+\end{problem}
+
+
+\end{document}
