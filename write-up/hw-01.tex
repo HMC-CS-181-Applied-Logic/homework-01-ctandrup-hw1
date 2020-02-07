@@ -17,8 +17,8 @@
 
 
 \title{CS 181U Applied Logic HW 1 \\ Due Wednesday Feb 5, 2020}
-\date{}
-\author{\todo{Your Name Goes Here}}
+\date{2/5/20}
+\author{Caroline Tandrup}
 \begin{document}
 \maketitle
 
@@ -38,10 +38,10 @@
 \begin{tabular}{|c|c||c|}
 \hline
 $A$ & $B$ & $A \ \mathrm{U} \ B$ \\ \hline \hline
-$F$ & $F$ & \todo{?} \\ \hline
-$F$ & $T$ & \todo{?} \\ \hline
-$T$ & $F$ & \todo{?} \\ \hline
-$T$ & $T$ & \todo{?} \\ \hline
+$F$ & $F$ & $F$ \\ \hline
+$F$ & $T$ & $T$ \\ \hline
+$T$ & $F$ & $T$ \\ \hline
+$T$ & $T$ & $F$ \\ \hline
 \end{tabular} \\ 
 \end{center} 
 
@@ -49,9 +49,9 @@ $T$ & $T$ & \todo{?} \\ \hline
 
 \item Express the semantics that you ascribed to `unless' using only the logical connectives from among $\land, \lor, \rightarrow, $ and $\neg$. \\
 
-\textbf{Answer.} 
+\textbf{Answer.}  
 
-$A \mathrm{U} B \equiv \todo{\textbf{some expression using $\land, \lor, \rightarrow,\neg$}}$
+$A \mathrm{U} B \equiv (\neg B \land A) \lor (\neg A \land B)$
 
 \newpage 
 
@@ -59,14 +59,25 @@ $A \mathrm{U} B \equiv \todo{\textbf{some expression using $\land, \lor, \righta
 
 \textbf{Answer.} 
 
-$A \mathrm{U} B \equiv \todo{\textbf{some expression using $\land, \lor, \rightarrow,\neg,\bar\land,\bar\lor,\oplus$}}$
+$A \mathrm{U} B \equiv A \oplus (XOR) B$
 
 
 \item Imagine that the \textit{unless} operator, $\mathrm{U}$, became a standard operator in formal propositional logic. In your opinion, do you think that the word `unless' as understood and used in natural language and a formal semantics of the unless operator $\mathrm{U}$ would have any important differences? Why or why not? \\
 
 \textbf{Answer.} 
 
-\todo{Your answer goes here.}
+Yes, I do think there are important differences between the natural language use of the word "unless" and the formal propositional logic use. The most obvious and important one to me seems to be the distinction that in common natural language uses of "unless" we usually mean that if the clause following "unless" is true, the first part is false, and if the second part is false, the first part is true. However, in terms of formal propositional logic, the word "unless" seems to mean more that if the second clause is true, the first part better be false, but if the second part is false, we don't actually know whether the first clause should be true or not (it's not specified bidirectionally). In formal logic, I would expect the truth table to look more like something below:
+
+\begin{center}
+\begin{tabular}{|c|c||c|}
+\hline
+$A$ & $B$ & $A \ \mathrm{U} \ B$ \\ \hline \hline
+$F$ & $F$ & $T$ \\ \hline
+$F$ & $T$ & $T$ \\ \hline
+$T$ & $F$ & $T$ \\ \hline
+$T$ & $T$ & $F$ \\ \hline
+\end{tabular} \\ 
+\end{center} 
 
 \end{enumerate}
 
@@ -84,7 +95,8 @@ Write one to two paragraphs describing your experience with explaining the idea 
 
 \textbf{Answer.} 
 
-\todo{Your answer goes here.}
+In terms of natural language, we frequently use words that have formal propositional logic implications, without much concern regarding the translation. If you say to someone, "If you're hungry, there are biscuits on the table, 99% of people will understand that you mean to say that there are biscuits on the table that you are welcome to eat if you're hungry. However, the propositional interpretation of this statement uses the "implies" logical operator which implies the following: If you are hungry, then there will be biscuits on the table, and are guaranteed to be biscuits on the table. If you are not hungry, there could be biscuits on the table, but there also might not be. There is nothing telling us about the biscuit-on-table situation if you're not hungry. We all probably agree that this is not the meaning of the natural language saying, since we don't mean to say biscuits will appear if you're hungry and may or may not if you're not hungry. This discrepancy is well explained by the biscuit problem but follows in so many other natural language to formal logic translations.\\ 
+The overall idea here is that we can't interchangably use words in natural language and formal logic without some careful consideration of the differences between the two. It's very tempting to assume that we can talk about propositional logic using natural language examples, since it's often easier to think about than trues and falses. A really good example of this is the semantic use of the word "or". In natural language we usually mean exclusive or, in the sense that one or the other but not both is true, however, in propositional logic "or" is still true when both cases apply. IT's difficult to see how to work around this issue without just being incredibly explicit about what use we want. To people who haven't excessively studied propositional logic, it may seem like the semantics just consider every sentence a little too literally, but it's very important to understand that both are valid interpretations and rather clarity is the necessary link to figure out what exactly our words mean. It is interesting that within the English language, we can understand each other even if we don't use formal rules when using words like "and","or","unless",etc.\\ 
 
 \end{enumerate}
 
@@ -378,6 +390,3 @@ In this part of the assignment I am asking you to come up with your own examples
 \end{enumerate}
 
 \end{problem}
-
-
-\end{document}
