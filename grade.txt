@@ -1,0 +1,8 @@
+Coding: 45 / 50
+
+homework-01-ctandrup-hw1
+the last couple asserts in test_NNF() fail
+and or.removeImplications don't recurse
+None of the simplify methods recurse, they just return self (or true) in the else case. 
+
+Written: 50/50
